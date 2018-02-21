@@ -1,0 +1,71 @@
+void clr_pin(void);
+int PIN_2 = 2;
+int PIN_4 = 4;
+int PIN_6 = 6;
+int PIN_7 = 7;
+int PIN_C = 8;
+int PIN_10 = 10;
+int PIN_12 = 12;
+int PIN_13 = 13;
+void setup() {
+  // put your setup code here, to run once:
+
+//
+pinMode(PIN_2, OUTPUT); //Assigned to SEG a
+pinMode(PIN_4, OUTPUT); //Assigned to SEG b
+pinMode(PIN_6, OUTPUT); //Assigned to SEG c
+pinMode(PIN_7, OUTPUT); //Assigned to SEG d
+pinMode(PIN_C, OUTPUT); //Cathode
+pinMode(PIN_10, OUTPUT); //Assigned to SEG e
+pinMode(PIN_12, OUTPUT); //Assigned to SEG f
+pinMode(PIN_13, OUTPUT); //Assigned to SEG g
+}
+
+void loop() {
+// put your main code here, to run repeatedly:
+//Clear segments
+clr_pin();
+ 
+//Turn on Cathode
+ 
+ 
+  //Turn on number ONE on LCD
+digitalWrite(PIN_4, HIGH);
+digitalWrite(PIN_6, HIGH);
+digitalWrite(PIN_C, LOW);
+delay(2500);
+ 
+  //Turn on number TWO on LCD  
+clr_pin();
+digitalWrite(PIN_C, HIGH);
+digitalWrite(PIN_2, HIGH);
+digitalWrite(PIN_4, HIGH);
+digitalWrite(PIN_13, HIGH);
+digitalWrite(PIN_10, HIGH);
+digitalWrite(PIN_7, HIGH);
+digitalWrite(PIN_C, LOW);
+clr_pin;
+delay(2500);
+
+digitalWrite(PIN_C, HIGH);
+
+
+}
+void clr_pin(){
+  digitalWrite(PIN_2, LOW);
+  digitalWrite(PIN_4, LOW);
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_13, LOW);
+}
+
+
+
+
+
+
+
+
+
