@@ -1,0 +1,221 @@
+void clr_pin(void);
+void DPLY(bool digito ,unsigned int segundos);
+bool numero;
+void ONE(void);
+void TWO(void);
+void THREE(void);
+void FOUR(void);
+void FIVE(void);
+void SIX(void);
+void SEVEN(void);
+void EIGHT(void);
+void NINE(void);
+void ZE_R(void);
+int unidad = 1;
+int check_loop = 0;
+int decena = 0;
+int PIN_2 = 2;
+int PIN_4 = 4;
+int PIN_6 = 6;
+int PIN_7 = 7;
+int ANODE1 = 8;
+int ANODE2 = 11;
+int PIN_10 = 10;
+int PIN_12 = 12;
+int PIN_13 = 13;
+int contador = 1;
+void setup() {
+  // put your setup code here, to run once:
+
+//
+pinMode(PIN_2, OUTPUT); //Assigned to SEG a,h
+pinMode(PIN_4, OUTPUT); //Assigned to SEG b,i
+pinMode(PIN_6, OUTPUT); //Assigned to SEG c,j
+pinMode(PIN_7, OUTPUT); //Assigned to SEG d,k
+pinMode(ANODE1, OUTPUT); //FIRST ANODE
+pinMode(ANODE2, OUTPUT); //SECOND ANODE
+pinMode(PIN_10, OUTPUT); //Assigned to SEG e,l
+pinMode(PIN_12, OUTPUT); //Assigned to SEG f,m
+pinMode(PIN_13, OUTPUT); //Assigned to SEG g,n
+digitalWrite(ANODE1,LOW);
+digitalWrite(ANODE2,LOW);
+}
+
+void loop() {
+// put your main code here, to run repeatedly:
+//Clear segments
+
+//clr_pin();
+ //unidad = contador % 10;
+ check_loop++;
+ unidad = contador % 10;
+ DPLY(1, unidad);
+ delay(10);
+ decena = contador / 10;
+ DPLY(0, decena);
+ 
+ delay(10);
+ if(check_loop == 50){
+  contador++;
+  check_loop = 0;
+ }
+ 
+  
+  if(contador == 100){
+    digitalWrite(ANODE1, HIGH);
+    clr_pin();
+    digitalWrite(ANODE1, LOW);
+    digitalWrite(ANODE2, HIGH);
+    clr_pin();
+    digitalWrite(ANODE2, LOW);
+    while(1){
+      delay(1000);
+    }
+  }
+  
+}
+  
+void clr_pin(){
+  digitalWrite(PIN_2, HIGH);
+  digitalWrite(PIN_4, HIGH);
+  digitalWrite(PIN_6, HIGH);
+  digitalWrite(PIN_7, HIGH);
+  digitalWrite(PIN_10, HIGH);
+  digitalWrite(PIN_12, HIGH);
+  digitalWrite(PIN_13, HIGH);
+}
+
+void ONE() {
+  //clr_pin();
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+}
+void TWO(){
+  //clr_pin();
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_13, LOW);
+  digitalWrite(PIN_4, LOW);
+  digitalWrite(PIN_2, LOW);
+}
+void THREE(){
+  //clr_pin();
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_13, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_2, LOW);
+}
+void FOUR(){
+  //clr_pin();
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_13, LOW);
+  digitalWrite(PIN_12, LOW);
+}
+void FIVE(){
+  //clr_pin();
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_13, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_2, LOW);
+}
+void SIX(){
+  //clr_pin();
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_4, LOW);
+  digitalWrite(PIN_2, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_13, LOW);
+}
+void SEVEN(){
+  //clr_pin();
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+}
+void EIGHT(){
+  //clr_pin();
+  digitalWrite(PIN_2, LOW);
+  digitalWrite(PIN_4, LOW);
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_13, LOW);
+}
+void NINE(){
+  //clr_pin();
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+  digitalWrite(PIN_13, LOW);
+}
+void ZE_R(){
+  //clr_pin();
+  digitalWrite(PIN_2, LOW);
+  digitalWrite(PIN_4, LOW);
+  digitalWrite(PIN_6, LOW);
+  digitalWrite(PIN_7, LOW);
+  digitalWrite(PIN_10, LOW);
+  digitalWrite(PIN_12, LOW);
+}
+void DPLY(bool digito, unsigned int segundos){
+  /*digitalWrite(ANODE1, LOW);
+  digitalWrite(ANODE2, LOW);*/
+  if(digito == 0){ 
+    //DIGITO 0 es igual a Decenas, es decir ANODE1
+    
+    digitalWrite(ANODE1, HIGH);
+    digitalWrite(ANODE2,LOW);
+    clr_pin();
+  }
+  else if (digito == 1){
+     
+     digitalWrite(ANODE1,LOW);
+     digitalWrite(ANODE2, HIGH);
+     clr_pin();
+  }
+  switch(segundos){
+    case 0:
+    ZE_R();
+    break;
+    case 1:
+    ONE();
+    break;
+    case 2:
+    TWO();
+    break;
+    case 3:
+    THREE();
+    break;
+    case 4:
+    FOUR();
+    break;
+    case 5:
+    FIVE();
+    break;
+    case 6:
+    SIX();
+    break;
+    case 7:
+    SEVEN();
+    break;
+    case 8:
+    EIGHT();
+    break; 
+    case 9:
+    NINE();
+    break;    
+    default:
+    break;
+  }
+}
+
+
+
+
+
